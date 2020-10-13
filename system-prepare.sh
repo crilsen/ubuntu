@@ -134,7 +134,7 @@ sudo apt install kde-plasma-desktop -y
 apt update && apt upgrade -y
 
 apt-get install realmd sssd packagekit
-realm join softexpert.local -U 'username@domain-name'
+realm join domain.local -U 'username@domain-name'
 
 #add on your /etc/sudoers
 #cristiano.nilsen        ALL=(ALL) NOPASSWD:ALL
