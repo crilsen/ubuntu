@@ -37,12 +37,34 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io -y
 sudo systemctl enable --now docker 
 
 sudo apt install docker-compose -y
+sudo usermod -aG docker ${USER}
 
+#kubectl
+sudo curl -sSL "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" -o /usr/local/bin/kubectl
+sudo chmod +x /usr/local/bin/kubectl
+sudo grep -q "kubectl completion bash" ~/.bashrc || echo -e "\nsource <(kubectl completion bash)" >> ~/.bashrc
+sudo grep -q "alias k=kubectl" ~/.bashrc || echo "alias k=kubectl" >> ~/.bashrc
+sudo grep -q "complete -F __start_kubectl k" ~/.bashrc || echo "complete -F __start_kubectl k" >> ~/.bashrc
+sudo grep -q "dr=\"--dry-run=client -o yaml\"" ~/.bashrc || echo "dr=\"--dry-run=client -o yaml\"" >> ~/.bashrc
+
+#aws cli
+
+sudo curl -sS "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+rm -rf aws && unzip -qq awscliv2.zip
+sudo ./aws/install -u
+sudo rm -rf aws awscliv2.zip
 
 #Git
 add-apt-repository ppa:git-core/ppa -y
 apt update
 apt install git git-lfs -y
+#git config
+git config --global user.name "$gituser"
+git config --global user.email "$gitemail"
+
+#java
+sudo apt install java-default
+
 
 #vscode
 #snap install code --classic
@@ -139,3 +161,26 @@ realm join domain.local -U 'username@domain-name'
 #add on your /etc/sudoers
 #cristiano.nilsen        ALL=(ALL) NOPASSWD:ALL
 sudo grep "${USER} ALL=(ALL) NOPASSWD:ALL" /etc/sudoers || sudo sh -c "echo \"${USER} ALL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers"
+
+#fine tunning
+
+sudo systemctl disable cups
+sudo systemctl stop cups
+sudo systemctl disable ufw
+sudo systemctl stop ufw
+
+#system optimizations. For more information https://www.akitaonrails.com/2017/01/17/optimizing-linux-for-slow-computers
+
+sudo tee -a /etc/sysctl.d/99-sysctl.conf <<-EOF
+vm.swappiness=1
+vm.vfs_cache_pressure=50
+EOF
+sudo tee -a /etc/sysctl.d/99-sysctl.conf <<-EOF
+vm.dirty_background_bytes=16777216
+vm.dirty_bytes=50331648
+EOF
+
+sudo sysctl -w vm.swappiness=1
+sudo sysctl -w vm.vfs_cache_pressure=50
+sudo sysctl -w vm.dirty_background_bytes=16777216 
+sudo sysctl -w vm.dirty_bytes=50331648
