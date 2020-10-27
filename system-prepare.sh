@@ -12,7 +12,7 @@ apt install vim -y
 wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 sudo apt-get update
-sudo apt install google-chrome-stable
+sudo apt install google-chrome-stable -y
 
 
 apt install vim -y
@@ -155,8 +155,8 @@ sudo apt install kde-plasma-desktop -y
 
 apt update && apt upgrade -y
 
-apt-get install realmd sssd packagekit
-realm join domain.local -U 'username@domain-name'
+apt-get install realmd sssd packagekit -y
+#realm join domain.local -U 'username@domain-name'
 
 #add on your /etc/sudoers
 #cristiano.nilsen        ALL=(ALL) NOPASSWD:ALL
