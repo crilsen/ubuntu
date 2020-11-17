@@ -2,10 +2,20 @@
 
 #for ubuntu 20.04
 
+cd /tmp
+
+#kernel alternative
+sudo add-apt-repository ppa:damentz/liquorix && sudo apt-get update -y
+sudo apt-get install linux-image-liquorix-amd64 linux-headers-liquorix-amd64 -y
 
 #vim
 
 sudo apt install vim -y
+
+#flatpak
+sudo apt install flatpak -y
+sudo apt install gnome-software-plugin-flatpak -y
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo -y
 
 #htop
 sudo apt install htop -y
@@ -64,6 +74,17 @@ sudo chmod +x /usr/local/bin/aws-iam-authenticatorku
 
 #remmina
 sudo apt install remmina -y
+
+#teamviewr
+
+wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb
+sudo apt install ./teamviewer_amd64.deb -y
+
+#anydesk
+wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
+sudo sh -c 'echo "deb http://deb.anydesk.com/ all main" > /etc/apt/sources.list.d/anydesk-stable.list'
+sudo apt update
+sudo apt install anydesk
 
 #Git
 add-apt-repository ppa:git-core/ppa -y
@@ -155,6 +176,9 @@ echo "deb [arch=amd64] https://packages.microsoft.com/repos/ms-teams stable main
 apt update
 apt install teams
 
+#discord
+flatpak install flathub com.discordapp.Discord -y
+
 #x2go
 sudo apt install software-properties-common -y 
 sudo add-apt-repository ppa:x2go/stable -y
@@ -202,7 +226,3 @@ sudo sysctl -w vm.swappiness=1
 sudo sysctl -w vm.vfs_cache_pressure=50
 sudo sysctl -w vm.dirty_background_bytes=16777216 
 sudo sysctl -w vm.dirty_bytes=50331648
-
-#kernel alternative
-sudo add-apt-repository ppa:damentz/liquorix && sudo apt-get update -y
-sudo apt-get install linux-image-liquorix-amd64 linux-headers-liquorix-amd64 -y
