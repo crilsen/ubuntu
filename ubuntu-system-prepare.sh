@@ -1,21 +1,23 @@
 #!/bin/bash
 
-#atom
-apt install atom -y
+#for ubuntu 20.04
+
 
 #vim
 
-apt install vim -y
- 
-#chome
+sudo apt install vim -y
 
+#htop
+sudo apt install htop -y
+
+#print tool
+sudo apt install flameshot -y
+
+#chome
 wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 sudo apt-get update
 sudo apt install google-chrome-stable -y
-
-
-apt install vim -y
 
 #docker
 
@@ -54,10 +56,20 @@ rm -rf aws && unzip -qq awscliv2.zip
 sudo ./aws/install -u
 sudo rm -rf aws awscliv2.zip
 
+#kubectl
+sudo curl -fsSL https://storage.googleapis.com/kubernetes-release/release/v1.14.0/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl
+sudo chmod +x /usr/local/bin/kubectl
+sudo curl -fsSL https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.9/2020-08-04/bin/linux/amd64/aws-iam-authenticator -o /usr/local/bin/aws-iam-authenticator
+sudo chmod +x /usr/local/bin/aws-iam-authenticatorku
+
+#remmina
+sudo apt install remmina -y
+
 #Git
 add-apt-repository ppa:git-core/ppa -y
 apt update
 apt install git git-lfs -y
+
 #git config
 git config --global user.name "$gituser"
 git config --global user.email "$gitemail"
@@ -82,6 +94,7 @@ sudo apt-get update
 sudo apt-get install sublime-text -y
 
 #python
+sudo apt install puthon3 -y
 sudo apt install python3-pip -y
 
 #GoogleDrive
@@ -101,21 +114,23 @@ sudo apt update
 sudo apt install spotify-client -y
 
 
-
 #docker second try
 apt-get install docker-ce -y
 apt-get install docker-compose -y
 sudo usermod -aG docker ${USER}
 
 #OracleVM
+wget -q -O - http://download.virtualbox.org/virtualbox/debian/oracle_vbox_2016.asc | sudo apt-key add -
+sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian focal non-free contrib" >> /etc/apt/sources.list.d/virtualbox.org.list' 
+sudo apt update
 apt install virtualbox -y
 
 #pgadmin
-wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
-echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" |sudo tee  /etc/apt/sources.list.d/pgdg.list
+#wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+#echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" |sudo tee  /etc/apt/sources.list.d/pgdg.list
 
-sudo apt update
-sudo apt install pgadmin4 pgadmin4-apache2 -y
+#sudo apt update
+#sudo apt install pgadmin4 pgadmin4-apache2 -y
 
 
 #telegram
@@ -128,6 +143,10 @@ sudo apt install telegram-cli telegram-purple -y
 sudo add-apt-repository ppa:gnome-terminator/nightly-gtk3 -y
 sudo apt-get update
 sudo apt-get install terminator -y
+
+#zsh
+sudo apt-get install zsh -y
+
 
 #teams You have Microsoft Teams Version 1.3.00.25560 (64-bit). 
 curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
@@ -143,10 +162,9 @@ sudo apt update
 sudo apt install x2goserver x2goserver-xsession -y
 
 
-#themes
+#graphical ambients
 sudo add-apt-repository ppa:kubuntu-ppa/backports -y
 sudo apt install kde-plasma-desktop -y
-
 
 #CID para integração com AD
 #sudo add-apt-repository ppa:emoraes25/cid -y
@@ -155,7 +173,7 @@ sudo apt install kde-plasma-desktop -y
 
 apt update && apt upgrade -y
 
-apt-get install realmd sssd packagekit -y
+#apt-get install realmd sssd packagekit -y
 #realm join domain.local -U 'username@domain-name'
 
 #add on your /etc/sudoers
@@ -184,3 +202,7 @@ sudo sysctl -w vm.swappiness=1
 sudo sysctl -w vm.vfs_cache_pressure=50
 sudo sysctl -w vm.dirty_background_bytes=16777216 
 sudo sysctl -w vm.dirty_bytes=50331648
+
+#kernel alternative
+sudo add-apt-repository ppa:damentz/liquorix && sudo apt-get update -y
+sudo apt-get install linux-image-liquorix-amd64 linux-headers-liquorix-amd64 -y
