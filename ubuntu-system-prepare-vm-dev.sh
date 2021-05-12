@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 #for ubuntu 20.04
 
