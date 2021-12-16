@@ -17,8 +17,15 @@ sudo apt install flatpak -y
 sudo apt install gnome-software-plugin-flatpak -y
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo -y
 
+#snapd
+sudo apt install snapd -y
+
 #htop
 sudo apt install htop -y
+
+#terminator
+sudo apt install terminator -y
+
 
 #print tool
 sudo apt install flameshot -y
@@ -54,10 +61,14 @@ sudo usermod -aG docker ${USER}
 #kubectl
 sudo curl -sSL "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" -o /usr/local/bin/kubectl
 sudo chmod +x /usr/local/bin/kubectl
+#kubectl complete
 sudo grep -q "kubectl completion bash" ~/.bashrc || echo -e "\nsource <(kubectl completion bash)" >> ~/.bashrc
 sudo grep -q "alias k=kubectl" ~/.bashrc || echo "alias k=kubectl" >> ~/.bashrc
 sudo grep -q "complete -F __start_kubectl k" ~/.bashrc || echo "complete -F __start_kubectl k" >> ~/.bashrc
 sudo grep -q "dr=\"--dry-run=client -o yaml\"" ~/.bashrc || echo "dr=\"--dry-run=client -o yaml\"" >> ~/.bashrc
+
+sudo curl -fsSL https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.9/2020-08-04/bin/linux/amd64/aws-iam-authenticator -o /usr/local/bin/aws-iam-authenticator
+sudo chmod +x /usr/local/bin/aws-iam-authenticatorku
 
 #aws cli
 
@@ -67,10 +78,13 @@ sudo ./aws/install -u
 sudo rm -rf aws awscliv2.zip
 
 #kubectl
-sudo curl -fsSL https://storage.googleapis.com/kubernetes-release/release/v1.14.0/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl
-sudo chmod +x /usr/local/bin/kubectl
-sudo curl -fsSL https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.9/2020-08-04/bin/linux/amd64/aws-iam-authenticator -o /usr/local/bin/aws-iam-authenticator
-sudo chmod +x /usr/local/bin/aws-iam-authenticatorku
+#sudo curl -fsSL https://storage.googleapis.com/kubernetes-release/release/v1.14.0/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl
+#sudo chmod +x /usr/local/bin/kubectl
+#sudo curl -fsSL https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.9/2020-08-04/bin/linux/amd64/aws-iam-authenticator -o /usr/local/bin/aws-iam-authenticator
+#sudo chmod +x /usr/local/bin/aws-iam-authenticatorku
+
+#lens
+sudo snap install kontena-lens --classic
 
 #remmina
 sudo apt install remmina -y
@@ -187,8 +201,8 @@ sudo apt install x2goserver x2goserver-xsession -y
 
 
 #graphical ambients
-sudo add-apt-repository ppa:kubuntu-ppa/backports -y
-sudo apt install kde-plasma-desktop -y
+#sudo add-apt-repository ppa:kubuntu-ppa/backports -y
+#sudo apt install kde-plasma-desktop -y
 
 #CID para integração com AD
 #sudo add-apt-repository ppa:emoraes25/cid -y
@@ -201,7 +215,7 @@ apt update && apt upgrade -y
 #realm join domain.local -U 'username@domain-name'
 
 #add on your /etc/sudoers
-#cristiano.nilsen        ALL=(ALL) NOPASSWD:ALL
+your.userhere        ALL=(ALL) NOPASSWD:ALL
 sudo grep "${USER} ALL=(ALL) NOPASSWD:ALL" /etc/sudoers || sudo sh -c "echo \"${USER} ALL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers"
 
 #fine tunning
