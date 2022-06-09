@@ -1,6 +1,7 @@
 #!/bin/bash
 
-#for ubuntu 20.04
+#for ubuntu 20.04-22-04
+#GitHub.com/CrilseN
 
 cd /tmp
 
