@@ -77,12 +77,6 @@ rm -rf aws && unzip -qq awscliv2.zip
 sudo ./aws/install -u
 sudo rm -rf aws awscliv2.zip
 
-#kubectl
-#sudo curl -fsSL https://storage.googleapis.com/kubernetes-release/release/v1.14.0/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl
-#sudo chmod +x /usr/local/bin/kubectl
-#sudo curl -fsSL https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.9/2020-08-04/bin/linux/amd64/aws-iam-authenticator -o /usr/local/bin/aws-iam-authenticator
-#sudo chmod +x /usr/local/bin/aws-iam-authenticatorku
-
 #lens
 sudo snap install kontena-lens --classic
 
@@ -98,8 +92,6 @@ sudo apt install ./teamviewer_amd64.deb -y
 wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
 sudo sh -c 'echo "deb http://deb.anydesk.com/ all main" > /etc/apt/sources.list.d/anydesk-stable.list'
 sudo apt update
-sudo apt install anydesk
-
 #Git
 add-apt-repository ppa:git-core/ppa -y
 apt update
@@ -111,7 +103,6 @@ git config --global user.email "$gitemail"
 
 #java
 sudo apt install java-default
-
 
 #vscode
 #snap install code --classic
@@ -164,14 +155,6 @@ apt install virtualbox -y
 #wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 #echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" |sudo tee  /etc/apt/sources.list.d/pgdg.list
 
-#sudo apt update
-#sudo apt install pgadmin4 pgadmin4-apache2 -y
-
-
-#telegram
-
-sudo apt install telegram-desktop -y
-sudo apt install telegram-cli telegram-purple -y
 
 #terminator
 
@@ -191,14 +174,6 @@ apt update
 apt install teams
 
 #discord
-flatpak install flathub com.discordapp.Discord -y
-
-#x2go
-sudo apt install software-properties-common -y 
-sudo add-apt-repository ppa:x2go/stable -y
-sudo apt update
-sudo apt install x2goserver x2goserver-xsession -y
-
 
 #graphical ambients
 #sudo add-apt-repository ppa:kubuntu-ppa/backports -y
@@ -224,19 +199,3 @@ sudo systemctl disable cups
 sudo systemctl stop cups
 sudo systemctl disable ufw
 sudo systemctl stop ufw
-
-#system optimizations. For more information https://www.akitaonrails.com/2017/01/17/optimizing-linux-for-slow-computers
-
-sudo tee -a /etc/sysctl.d/99-sysctl.conf <<-EOF
-vm.swappiness=1
-vm.vfs_cache_pressure=50
-EOF
-sudo tee -a /etc/sysctl.d/99-sysctl.conf <<-EOF
-vm.dirty_background_bytes=16777216
-vm.dirty_bytes=50331648
-EOF
-
-sudo sysctl -w vm.swappiness=1
-sudo sysctl -w vm.vfs_cache_pressure=50
-sudo sysctl -w vm.dirty_background_bytes=16777216 
-sudo sysctl -w vm.dirty_bytes=50331648
