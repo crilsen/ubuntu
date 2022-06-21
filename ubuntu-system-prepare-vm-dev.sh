@@ -145,11 +145,6 @@ sudo add-apt-repository ppa:x2go/stable -y
 sudo apt update
 sudo apt install x2goserver x2goserver-xsession -y
 
-
-#graphical ambients
-sudo add-apt-repository ppa:kubuntu-ppa/backports -y
-sudo apt install kde-plasma-desktop -y
-
 apt update && apt upgrade -y
 
 #add on your /etc/sudoers
@@ -163,18 +158,3 @@ sudo systemctl stop cups
 sudo systemctl disable ufw
 sudo systemctl stop ufw
 
-#system optimizations. For more information https://www.akitaonrails.com/2017/01/17/optimizing-linux-for-slow-computers
-
-sudo tee -a /etc/sysctl.d/99-sysctl.conf <<-EOF
-vm.swappiness=1
-vm.vfs_cache_pressure=50
-EOF
-sudo tee -a /etc/sysctl.d/99-sysctl.conf <<-EOF
-vm.dirty_background_bytes=16777216
-vm.dirty_bytes=50331648
-EOF
-
-sudo sysctl -w vm.swappiness=1
-sudo sysctl -w vm.vfs_cache_pressure=50
-sudo sysctl -w vm.dirty_background_bytes=16777216 
-sudo sysctl -w vm.dirty_bytes=50331648
