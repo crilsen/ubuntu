@@ -5,8 +5,8 @@
 cd /tmp
 
 #kernel alternative
-sudo add-apt-repository ppa:damentz/liquorix && sudo apt-get update -y
-sudo apt-get install linux-image-liquorix-amd64 linux-headers-liquorix-amd64 -y
+#sudo add-apt-repository ppa:damentz/liquorix && sudo apt-get update -y
+#sudo apt-get install linux-image-liquorix-amd64 linux-headers-liquorix-amd64 -y
 
 #vim
 
